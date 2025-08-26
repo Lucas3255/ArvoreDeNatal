@@ -1,3 +1,5 @@
+# Atualização: só prar tirar o cara lá
+
 import os
 import platform
 import time
