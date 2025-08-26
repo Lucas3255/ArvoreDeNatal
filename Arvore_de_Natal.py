@@ -1,4 +1,4 @@
-# Atualização: só prar tirar o cara lá
+# Aviso: revisar a lógica da linha 27!!!!!!!!
 
 import os
 import platform
@@ -11,10 +11,29 @@ def limpa_tela():
     else:
         os.system("clear")
 
+def mensagemErro(x):
+    limpa_tela()
+    if x < 0:
+        print("O número tem q ser maior que 0.\n")
+    else:
+        print(f"Ops... A opção {x} é valor válido!\n")
+    time.sleep(2)
+    input("Clique em qualquer tecla para continuar.")
+
 #loop para manter o sistema funcionando até o usuário n querer mais.
 while True:
-    limpa_tela()
-    tamanho = int(input("Qual o tamanho da arvore: "))
+    while True:
+        try:
+            limpa_tela()        #revisar este trecho!!!!
+            print("#### Criando uma Árvore de Natal ####\n")
+            tamanho = int(input(" Qual o tamanho da arvore: "))
+            if tamanho < 0 or tamanho != int:
+                mensagemErro(tamanho)
+                continue
+            break
+        except ValueError:
+            mensagemErro(tamanho)
+
     galhos = 1
     tronco = 0
 
@@ -63,9 +82,5 @@ while True:
             exit()
         else:
         #elif escolha != 1 and escolha != 2:
-            limpa_tela()
-            print(f"Ops... A opção {escolha} é inválida!")
-            time.sleep(1)
-            input("\nClique qualquer tecla para continuar.")
-            limpa_tela()
+            mensagemErro(escolha)
     
