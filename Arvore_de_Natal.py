@@ -1,4 +1,4 @@
-# Aviso: revisar a lógica da linha 27!!!!!!!!
+# Projeto Finalizado!!!
 
 import os
 import platform
@@ -16,7 +16,7 @@ def mensagemErro(x):
     if x < 0:
         print("O número tem q ser maior que 0.\n")
     else:
-        print(f"Ops... A opção {x} é valor válido!\n")
+        print(f"Ops... A opção {x} é valor inválido!\n")
     time.sleep(2)
     input("Clique em qualquer tecla para continuar.")
 
@@ -24,10 +24,10 @@ def mensagemErro(x):
 while True:
     while True:
         try:
-            limpa_tela()        #revisar este trecho!!!!
+            limpa_tela()        
             print("#### Criando uma Árvore de Natal ####\n")
             tamanho = int(input(" Qual o tamanho da arvore: "))
-            if tamanho < 0 or tamanho != int:
+            if tamanho <= 0:
                 mensagemErro(tamanho)
                 continue
             break
@@ -42,7 +42,7 @@ while True:
     else:
         tronco = 1
 
-    limpa_tela()
+    print("")
 
     #desenho da arvore
     for i in range(tamanho):    #define a altura da arvore.
@@ -66,21 +66,25 @@ while True:
     for i in range(tronco): # serve para aplicar o tronco em si.
         print("|", end="")
 
+    print("")
     #função para saber se o usuário que continuar o programa.
-    time.sleep(2)
     while True:
-        escolha = int(input("\n\nGostaria de fazer de novo?\n1 - Sim.\n2 - Não.\n\n>> "))
-        
-        if escolha == 1:
-            break
-        elif escolha == 2:
-            limpa_tela()
-            print("Encerrando Programa")
-            for i in range(0, 6, 1):
-                print(" o", end="", flush=True)
-                time.sleep(1)
-            exit()
-        else:
-        #elif escolha != 1 and escolha != 2:
+        try:
+            escolha = int(input("\nGostaria de fazer de novo?\n1 - Sim.\n2 - Não.\n\n>> "))
+            
+            if escolha == 1:
+                break
+            elif escolha == 2:
+                limpa_tela()
+                print("Encerrando Programa")
+                for i in range(0, 6, 1):
+                    print(" o", end="", flush=True)
+                    time.sleep(0.25)
+                exit()
+            else:
+                mensagemErro(escolha)
+                limpa_tela()
+        except ValueError:
             mensagemErro(escolha)
-    
+            limpa_tela()
+        
